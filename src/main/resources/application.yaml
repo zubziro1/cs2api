@@ -1,0 +1,11 @@
+settings:
+  baseUrlCallback: REPLACE_ME
+  waitForCallbackTimeOut: 6000
+  rcon:
+    password: REPLACE_ME
+    address: REPLACE_ME
+    port: 0
+
+logging:
+  level:
+    zub: DEBUG
