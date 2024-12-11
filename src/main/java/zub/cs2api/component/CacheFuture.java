@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import zub.cs2api.dto.SwapiResponse;
 import zub.cs2api.model.FutureWithStartTime;
 
 import java.time.LocalDateTime;
@@ -20,11 +21,11 @@ public class CacheFuture {
 
     private final Map<String, FutureWithStartTime> callbacks = new ConcurrentHashMap<>();
 
-    public void put(String id, CompletableFuture<String> future) {
+    public void put(String id, CompletableFuture<SwapiResponse> future) {
         callbacks.put(id, new FutureWithStartTime(LocalDateTime.now(), future));
     }
 
-    public CompletableFuture<String> pop(String id) {
+    public CompletableFuture<SwapiResponse> pop(String id) {
         var future = callbacks.get(id).getFuture();
         callbacks.remove(id);
         return future;

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import zub.cs2api.dto.SwapiResponse;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
@@ -14,5 +15,5 @@ import java.util.concurrent.CompletableFuture;
 @Setter
 public class FutureWithStartTime {
     private LocalDateTime startTime;
-    private CompletableFuture<String> future;
+    private CompletableFuture<SwapiResponse> future;
 }

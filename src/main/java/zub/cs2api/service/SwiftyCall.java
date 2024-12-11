@@ -3,6 +3,7 @@ package zub.cs2api.service;
 import org.springframework.stereotype.Service;
 import zub.cs2api.component.CacheFuture;
 import zub.cs2api.config.SettingsProperties;
+import zub.cs2api.dto.SwapiResponse;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -26,10 +27,10 @@ public class SwiftyCall {
         this.settingsProperties = settingsProperties;
     }
 
-    public String call(String auth, String payload) throws IOException, ExecutionException, InterruptedException, TimeoutException {
+    public SwapiResponse call(String auth, String payload) throws IOException, ExecutionException, InterruptedException, TimeoutException {
         var requestId = UUID.randomUUID().toString();
 
-        var future = new CompletableFuture<String>();
+        var future = new CompletableFuture<SwapiResponse>();
         cacheFuture.put(requestId, future);
         rconCall.send("sw_api" + " " + requestId + " " + auth + " " + Base64.getEncoder().encodeToString(settingsProperties.getBaseUrlCallback().getBytes(StandardCharsets.UTF_8)) + " " + Base64.getEncoder().encodeToString(payload.getBytes(StandardCharsets.UTF_8)));
 

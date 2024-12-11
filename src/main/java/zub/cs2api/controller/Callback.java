@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import zub.cs2api.component.CacheFuture;
+import zub.cs2api.dto.SwapiResponse;
 
 @RestController
 @RequestMapping("/callback")
@@ -19,7 +20,7 @@ public class Callback {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Void> callback(@PathVariable String id, @RequestBody String body) {
+    public ResponseEntity<Void> callback(@PathVariable String id, @RequestBody SwapiResponse body) {
 
         log.debug("handleCallback: {}", id);
         log.trace("body: {}", body);

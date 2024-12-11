@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.0'
 	id 'io.spring.dependency-management' version '1.1.6'
+	id 'org.jsonschema2pojo' version '1.2.2'
 }
 
 group = 'zub'
@@ -15,6 +16,46 @@ java {
 
 repositories {
 	mavenCentral()
+}
+
+jsonSchema2Pojo {
+	// Source configuration
+	source = files('src/main/resources/schemas')
+	sourceType = 'jsonschema'
+
+	// Target configuration
+	targetPackage = 'zub.cs2api.dto'
+	targetDirectory = layout.buildDirectory.dir("generated").get().asFile
+	outputEncoding = 'UTF-8'
+	targetVersion = '23'
+
+	// Class and property naming
+	propertyWordDelimiters = ['-', '_']              // Treat '-' and '_' as word delimiters for property names
+	useTitleAsClassname = false
+	includeAdditionalProperties = true
+	includeDynamicAccessors = false
+
+	// Type configurations
+	usePrimitives = true                             // Use primitive types where possible
+	includeConstructors = true                       // Include constructors for generated classes
+	constructorsRequiredPropertiesOnly = false       // Generate constructors with only required properties
+	includeHashcodeAndEquals = true                  // Include `hashCode` and `equals` methods
+	includeToString = true                           // Include `toString` method
+	useInnerClassBuilders = false                    // Generate builders as inner classes
+	useLongIntegers = false                          // Use `Long` instead of `Integer` for non-float numbers
+	useDoubleNumbers = true                          // Use `Double` instead of `Float` for floating-point numbers
+	includeGeneratedAnnotation = true               // Add @Generated annotation to generated classes
+	includeJsr303Annotations = false                // Add JSR-303 annotations for validation
+	includeJsr305Annotations = false                // Add JSR-305 annotations for nullability
+
+	// Formatting options
+	removeOldOutput = true                           // Remove existing files in the target directory before generation
+	initializeCollections = true                     // Initialize collections to empty lists/maps instead of null
+	includeGetters = true                            // Include getter methods
+	includeSetters = true                            // Include setter methods
+	useOptionalForGetters = false                    // Use `Optional` for getter return types
+	includeConstructors = true                       // Include constructor methods
+	useJakartaValidation = false                     // Use Jakarta validation annotations instead of javax
 }
 
 dependencies {
