@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Request Schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Map name",
+      "examples": ["de_dust2"]
+    }
+  },
+  "required": ["name"],
+  "additionalProperties": false
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Request Schema",
+  "type": "object",
+  "properties": {
+    "function": {
+      "type": "string",
+      "description": "Function name to execute",
+      "examples": ["get_players_info"]
+    },
+    "payload": {
+      "type": "string",
+      "description": "B64 Input json",
+      "examples": ["base64_encoded_data"]
+    }
+  },
+  "required": ["function", "payload"],
+  "additionalProperties": false
+}
