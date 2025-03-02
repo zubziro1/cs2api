@@ -1,10 +1,10 @@
 settings:
   baseUrlCallback: REPLACE_ME
-  waitForCallbackTimeOut: 6000
+  waitForCallbackTimeOut: 3000
   rcon:
     password: REPLACE_ME
     address: REPLACE_ME
-    port: 0
+    port: 27015
 
 logging:
   level:

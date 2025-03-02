@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Request Schema",
+  "type": "object",
+  "properties": {
+    "t": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 20,
+      "description": "total number of T bots",
+      "examples": ["5"]
+    },
+    "ct": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 20,
+      "description": "total number of CT bots",
+      "examples": ["5"]
+    }
+  },
+  "required": ["t", "ct"],
+  "additionalProperties": false
+}

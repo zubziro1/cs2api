@@ -1,10 +1,12 @@
 package zub.cs2api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import zub.cs2api.dto.SwapiRequest;
+import zub.cs2api.dto.SwapiRequestBots;
 import zub.cs2api.dto.SwapiRequestMap;
 import zub.cs2api.dto.SwapiResponse;
 import zub.cs2api.service.SwiftyCall;
@@ -28,7 +30,7 @@ public class Api {
     }
 
     @PostMapping("/sw")
-    public SwapiResponse sw(@RequestHeader(value = "Authorization") String auth, @RequestBody SwapiRequest req) throws IOException, ExecutionException, InterruptedException, TimeoutException {
+    public SwapiResponse sw(@RequestHeader(value = "Authorization") String auth, @Valid @RequestBody SwapiRequest req) throws IOException, ExecutionException, InterruptedException, TimeoutException {
         return swiftyCall.call(auth, req);
     }
 
@@ -40,8 +42,15 @@ public class Api {
     }
 
     @PostMapping("/sw/map")
-    public String swSetMap(@RequestHeader(value = "Authorization") String auth, @RequestBody SwapiRequestMap map) throws IOException, ExecutionException, InterruptedException, TimeoutException {
+    public String swSetMap(@RequestHeader(value = "Authorization") String auth, @Valid @RequestBody SwapiRequestMap map) throws IOException, ExecutionException, InterruptedException, TimeoutException {
         var req = new SwapiRequest("setMap", om.writeValueAsString(map));
+        var resp = swiftyCall.call(auth, req);
+        return new String(Base64.getDecoder().decode(resp.getPayload()));
+    }
+
+    @PostMapping("/sw/bots")
+    public String swSetBots(@RequestHeader(value = "Authorization") String auth, @Valid @RequestBody SwapiRequestBots bots) throws IOException, ExecutionException, InterruptedException, TimeoutException {
+        var req = new SwapiRequest("setBots", om.writeValueAsString(bots));
         var resp = swiftyCall.call(auth, req);
         return new String(Base64.getDecoder().decode(resp.getPayload()));
     }

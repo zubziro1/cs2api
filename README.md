@@ -1,2 +1,3 @@
 - curl -H "Authorization: 123" http://localhost:8080/api/sw/players
 - curl -X POST -H "Authorization: 123" -H "Content-Type: application/json" http://localhost:8080/api/sw/map -d '{"name":"de_dust2"}'
+- curl -X POST -H "Authorization: 123" -H "Content-Type: application/json" http://localhost:8080/api/sw/bots -d '{"t":3, "ct":7}'
