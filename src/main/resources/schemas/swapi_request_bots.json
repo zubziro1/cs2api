@@ -8,14 +8,14 @@
       "minimum": 0,
       "maximum": 20,
       "description": "total number of T bots",
-      "examples": ["5"]
+      "examples": [5]
     },
     "ct": {
       "type": "integer",
       "minimum": 0,
       "maximum": 20,
       "description": "total number of CT bots",
-      "examples": ["5"]
+      "examples": [5]
     }
   },
   "required": ["t", "ct"],
